@@ -1,5 +1,6 @@
 import ServicesSection from "@/src/component/home/service-section";
 import HomeHero from "../home/home";
+import WhyChooseUs from "@/src/component/home/choose";
 
 export default function Dashboard() {
   return (
@@ -17,6 +18,7 @@ export default function Dashboard() {
       {/* <FAQSection /> */}
       {/* <Footer /> */}
       <ServicesSection />
+      <WhyChooseUs />
     </main>
   );
 }

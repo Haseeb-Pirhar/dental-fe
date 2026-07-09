@@ -17,17 +17,6 @@ interface ServiceCardProps {
   index: number;
 }
 
-/**
- * A single tile in the ServicesSection grid. Every tile is a photo tile:
- * background photo -> navy gradient (for legibility) -> white text on top.
- *
- * NOTE on color: this file intentionally uses Tailwind's arbitrary-value
- * syntax (e.g. text-[#F4FAF7]) instead of custom theme names like
- * `text-navy-900`. Arbitrary values are generated automatically and render
- * immediately — no tailwind.config.ts changes required. If you've already
- * added the color tokens from SETUP.md, feel free to swap these for the
- * named classes instead.
- */
 export default function ServiceCard({ service, index }: ServiceCardProps) {
   const { title, description, icon: Icon, imageSrc, imageAlt } = service;
 
@@ -42,7 +31,7 @@ export default function ServiceCard({ service, index }: ServiceCardProps) {
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -6 }}
-      className="group relative isolate flex min-h-[240px] flex-col justify-end overflow-hidden rounded-3xl p-6 shadow-[0_1px_2px_rgba(15,42,53,0.15)] transition-shadow duration-300 hover:shadow-[0_20px_36px_-14px_rgba(15,42,53,0.45)] sm:min-h-[260px] sm:p-7"
+      className="group relative isolate flex min-h-60 flex-col justify-end overflow-hidden rounded-3xl p-6 shadow-[0_1px_2px_rgba(15,42,53,0.15)] transition-shadow duration-300 hover:shadow-[0_20px_36px_-14px_rgba(15,42,53,0.45)] sm:min-h-[260px] sm:p-7"
     >
       {/* Photo layer */}
       <Image
@@ -55,7 +44,7 @@ export default function ServiceCard({ service, index }: ServiceCardProps) {
 
       {/* Legibility gradient — darker at the bottom where the text sits, so
           the photo stays readable regardless of how bright the source image is */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0B1F27] via-[#0B1F27]/55 to-[#0B1F27]/10" />
+      <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#0B1F27] via-[#0B1F27]/55 to-[#0B1F27]/10" />
 
       {/* Icon badge */}
       <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#FBFEFC] shadow-sm transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105">
