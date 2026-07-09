@@ -1,3 +1,4 @@
+import ServicesSection from "@/src/component/home/service-section";
 import HomeHero from "../home/home";
 
 export default function Dashboard() {
@@ -15,6 +16,7 @@ export default function Dashboard() {
       {/* <TestimonialsSection /> */}
       {/* <FAQSection /> */}
       {/* <Footer /> */}
+      <ServicesSection />
     </main>
   );
 }

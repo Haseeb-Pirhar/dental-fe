@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Calendar, ChevronDown, Star } from "lucide-react";
 import Navbar, { Button } from "@/src/component/navbar/navbar";
 import Image from "next/image";
+import ServicesSection from "@/src/component/home/service-section";
 
 interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ElementType;
