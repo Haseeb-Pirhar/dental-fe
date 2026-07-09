@@ -80,7 +80,7 @@ function StatItem({ value, suffix, label, index }: Stat & { index: number }) {
 export default function WhyChooseUs() {
   return (
     <section className="bg-[#FDFBF7] py-10 sm:py-18">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-[1.05fr_1fr_0.85fr] lg:gap-10">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-[1.05fr_1fr_0.85fr] lg:gap-30">
         {/* Left: heading + checklist */}
         <div>
           <motion.div
@@ -89,7 +89,7 @@ export default function WhyChooseUs() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 className="font-display text-3xl font-bold tracking-tight text-[#123240] sm:text-4xl">
+            <h2 className="font-display text-3xl font-bold tracking-tight text-[#123240] sm:text-3xl">
               Why Choose Dentrist
             </h2>
             <p className="mt-2 text-[#4B6570]">
