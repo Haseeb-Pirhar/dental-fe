@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Calendar, ChevronDown, Star } from "lucide-react";
 import Navbar, { Button } from "@/src/component/navbar/navbar";
+import Image from "next/image";
 
 interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ElementType;
@@ -121,9 +122,9 @@ function BookingForm() {
 function MeshBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-      <div className="absolute -left-24 -top-24 h-[26rem] w-[26rem] rounded-full bg-[#FFD9C0] opacity-70 blur-[90px]" />
-      <div className="absolute right-0 top-10 h-[22rem] w-[22rem] rounded-full bg-[#BFF2DE] opacity-70 blur-[90px]" />
-      <div className="absolute bottom-[-6rem] left-1/3 h-[24rem] w-[24rem] rounded-full bg-[#D9CCFF] opacity-60 blur-[100px]" />
+      <div className="absolute -left-24 -top-24 h-104 w-104 rounded-full bg-[#FFD9C0] opacity-70 blur-[90px]" />
+      <div className="absolute right-0 top-10 h-88 w-88 rounded-full bg-[#BFF2DE] opacity-70 blur-[90px]" />
+      <div className="absolute -bottom-24 left-1/3 h-96 w-[24rem] rounded-full bg-[#D9CCFF] opacity-60 blur-[100px]" />
     </div>
   );
 }
@@ -131,7 +132,7 @@ function MeshBackground() {
 function RatingBadge() {
   return (
     <div className="absolute -left-5 bottom-6 flex items-center gap-3 rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-lg shadow-[#14213D]/10 backdrop-blur-md sm:-left-8">
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#FF6B4A] to-[#1FBF9C]">
+      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-[#FF6B4A] to-[#1FBF9C]">
         <Star size={18} className="fill-white text-white" />
       </div>
       <div>
@@ -147,12 +148,12 @@ function RatingBadge() {
 function HeroImage() {
   return (
     <div className="relative">
-      <div className="aspect-[4/3] w-full overflow-hidden rounded-[2rem] shadow-2xl shadow-[#14213D]/15 sm:aspect-[16/11] lg:aspect-[4/3]">
-        <img
+      <div className="relative aspect-4/3 w-full overflow-hidden rounded-4xl">
+        <Image
           src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1200&auto=format&fit=crop"
           alt="Dentist treating a smiling young patient"
-          className="h-full w-full object-cover"
-          loading="lazy"
+          fill
+          className="object-cover"
         />
       </div>
       <RatingBadge />
@@ -170,7 +171,7 @@ export default function HomeHero() {
         <div className="flex flex-col justify-center">
           <h1 className="font-(family-name:--font-display,inherit) text-4xl font-extrabold leading-[1.1] text-[#14213D] sm:text-5xl lg:text-[3.4rem]">
             Brighten Your{" "}
-            <span className="bg-gradient-to-r from-[#FF6B4A] to-[#1FBF9C] bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-[#FF6B4A] to-[#1FBF9C] bg-clip-text text-transparent">
               Smile
             </span>
             <br />
