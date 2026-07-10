@@ -1,6 +1,8 @@
 import ServicesSection from "@/src/component/home/service-section";
 import HomeHero from "../home/home";
 import WhyChooseUs from "@/src/component/home/choose";
+import HowItWorks from "@/src/component/home/its-work";
+import VideoSection from "@/src/component/home/video-section";
 
 export default function Dashboard() {
   return (
@@ -19,6 +21,8 @@ export default function Dashboard() {
       {/* <Footer /> */}
       <ServicesSection />
       <WhyChooseUs />
+      <HowItWorks />
+      <VideoSection />
     </main>
   );
 }
