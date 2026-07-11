@@ -39,19 +39,8 @@ interface NavbarProps {
 function Logo() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B4A] to-[#1FBF9C] shadow-md shadow-[#FF6B4A]/20">
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 2C9.5 2 8 3.5 6.5 3.5 4.5 3.5 3 5.5 3 8c0 2 .8 3 1 5 .3 2.5 1 8.5 3 8.5 1.6 0 1.6-3 2.4-5.5.3-1 .8-1.5 2.1-1.5s1.8.5 2.1 1.5c.8 2.5.8 5.5 2.4 5.5 2 0 2.7-6 3-8.5.2-2 1-3 1-5 0-2.5-1.5-4.5-3.5-4.5C16 3.5 14.5 2 12 2Z"
-            fill="white"
-          />
-        </svg>
+      <div className="flex h-9 w-9 items-center justify-center rounded-4xl">
+        <img src="/images/logo.png" alt="Dentrist logo" className="h-7 w-7" />
       </div>
       <span className="font-(family-name:--font-display,inherit) text-lg font-bold tracking-tight text-[#14213D]">
         Dentrist
