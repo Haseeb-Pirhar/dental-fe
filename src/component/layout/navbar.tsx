@@ -106,10 +106,10 @@ function Button({
 /* ------------------------------- Navbar ------------------------------- */
 
 const DEFAULT_LINKS: NavItem[] = [
-  { label: "Home", href: "#home", active: true },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/", active: true },
+  { label: "About", href: "/dashboard/about" },
+  { label: "Services", href: "/services" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar({
