@@ -7,6 +7,8 @@ import Image from "next/image";
 import Navbar from "@/src/component/layout/navbar";
 import StandFor from "@/src/component/about/stand-for";
 import TeamSection from "@/src/component/about/team-section";
+import ClinicHoursSection from "@/src/component/about/timing-clinic";
+import Footer from "@/src/component/layout/footer";
 
 /**
  * AboutSection — "About Dentrist"
@@ -188,6 +190,8 @@ export default function AboutSection() {
       </section>
       <StandFor />
       <TeamSection />
+      <ClinicHoursSection />
+      <Footer />
     </>
   );
 }
