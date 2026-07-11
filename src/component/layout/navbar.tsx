@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 /* ============================================================================
@@ -15,7 +16,6 @@ import { Menu, X } from "lucide-react";
 interface NavItem {
   label: string;
   href: string;
-  active?: boolean;
 }
 
 interface NavLinkProps {
@@ -66,8 +66,10 @@ function NavLink({ href, children, active = false }: NavLinkProps) {
   return (
     <a
       href={href}
-      className={`relative pb-1 text-sm font-medium transition-colors duration-200 ${
-        active ? "text-[#14213D]" : "text-[#5B6B85] hover:text-[#14213D]"
+      className={`relative pb-1 text-sm transition-colors duration-200 ${
+        active
+          ? "font-bold text-[#14213D]"
+          : "font-medium text-[#5B6B85] hover:text-[#14213D]"
       }`}
     >
       {children}
@@ -106,7 +108,7 @@ function Button({
 /* ------------------------------- Navbar ------------------------------- */
 
 const DEFAULT_LINKS: NavItem[] = [
-  { label: "Home", href: "/", active: true },
+  { label: "Home", href: "/" },
   { label: "About", href: "/dashboard/about" },
   { label: "Services", href: "/dashboard/service-page" },
   { label: "Contact", href: "/dashboard/contact" },
@@ -117,6 +119,14 @@ export default function Navbar({
   onBookNowClick,
 }: NavbarProps) {
   const [open, setOpen] = useState<boolean>(false);
+  const pathname = usePathname();
+
+  // A link is active when the current route matches it exactly, or sits
+  // inside it (e.g. "/dashboard/about" also covers "/dashboard/about/team"),
+  // while "/" only matches the exact home route so every page doesn't light
+  // it up.
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header className="sticky top-0 z-30">
@@ -127,7 +137,11 @@ export default function Navbar({
 
           <nav className="hidden items-center gap-10 md:flex">
             {links.map((link) => (
-              <NavLink key={link.label} href={link.href} active={link.active}>
+              <NavLink
+                key={link.label}
+                href={link.href}
+                active={isActive(link.href)}
+              >
                 {link.label}
               </NavLink>
             ))}
@@ -153,7 +167,11 @@ export default function Navbar({
       {open && (
         <div className="flex w-full flex-col items-center gap-5 border-b border-white/40 bg-white/80 py-6 shadow-lg backdrop-blur-xl md:hidden">
           {links.map((link) => (
-            <NavLink key={link.label} href={link.href} active={link.active}>
+            <NavLink
+              key={link.label}
+              href={link.href}
+              active={isActive(link.href)}
+            >
               {link.label}
             </NavLink>
           ))}

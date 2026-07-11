@@ -4,6 +4,15 @@ import { useState } from "react";
 import { Calendar, ChevronDown, Star } from "lucide-react";
 import Image from "next/image";
 import Navbar, { Button } from "@/src/component/layout/navbar";
+import { FaWhatsapp } from "react-icons/fa";
+
+/* ============================================================================
+   Doctor's WhatsApp number — replace with the real number, country code
+   first, no spaces, no "+" (e.g. Pakistan number 03001234567 -> 923001234567)
+   ============================================================================ */
+const DOCTOR_WHATSAPP_NUMBER = "923001234567"; // TODO: replace with the real number
+const WHATSAPP_DEFAULT_MESSAGE =
+  "Hi, I'd like to book an appointment at Dentrist.";
 
 interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ElementType;
@@ -63,23 +72,67 @@ interface BookingFormValues {
   time: string;
 }
 
-function BookingForm() {
-  const [submitted, setSubmitted] = useState<boolean>(false);
+type SubmitStatus = "idle" | "loading" | "success" | "error";
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+function BookingForm() {
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const data = new FormData(form);
     const values: BookingFormValues = {
       name: String(data.get("name") ?? ""),
       email: String(data.get("email") ?? ""),
       date: String(data.get("date") ?? ""),
       time: String(data.get("time") ?? ""),
     };
-    console.log("Booking request:", values);
-    setSubmitted(true);
-    e.currentTarget.reset();
-    setTimeout(() => setSubmitted(false), 2500);
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/book-appointment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      let payload: { error?: string } = {};
+      try {
+        payload = await res.json();
+      } catch {
+        // response wasn't JSON (e.g. route returned an HTML 404 page) — payload stays empty
+      }
+
+      if (!res.ok) {
+        throw new Error(
+          payload.error || `Request failed with status ${res.status}`,
+        );
+      }
+
+      setStatus("success");
+      form.reset();
+      setTimeout(() => setStatus("idle"), 3000);
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Something went wrong";
+      console.error("Booking submission failed:", message);
+      setErrorMessage(message);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   }
+
+  const buttonLabel =
+    status === "loading"
+      ? "Sending..."
+      : status === "success"
+        ? "Request Sent ✓"
+        : status === "error"
+          ? "Couldn't send — try again"
+          : "Submit";
 
   return (
     <form
@@ -112,9 +165,21 @@ function BookingForm() {
         />
       </div>
 
-      <Button type="submit" variant="solid" className="mt-5 w-full">
-        {submitted ? "Request Sent ✓" : "Submit"}
+      <Button
+        type="submit"
+        variant="solid"
+        disabled={status === "loading"}
+        className="mt-5 w-full disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        {buttonLabel}
       </Button>
+
+      {status === "error" && (
+        <p className="mt-2 text-center text-xs text-red-500">
+          {errorMessage ||
+            "Something went wrong — please try again or call us directly."}
+        </p>
+      )}
     </form>
   );
 }
@@ -162,6 +227,13 @@ function HeroImage() {
 }
 
 export default function HomeHero() {
+  function handleWhatsAppClick() {
+    const url = `https://wa.me/${DOCTOR_WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      WHATSAPP_DEFAULT_MESSAGE,
+    )}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
   return (
     <section id="home" className="relative min-h-screen w-full bg-[#FDFBF7]">
       <MeshBackground />
@@ -189,7 +261,10 @@ export default function HomeHero() {
               Discover a dental experience that&apos;s friendly, stress-free,
               and focused entirely on you
             </p>
-            <Button variant="outline">Book Your Appointment Today</Button>
+            <Button variant="outline" onClick={handleWhatsAppClick}>
+              <FaWhatsapp size={18} className="mr-2" />
+              Book via WhatsApp
+            </Button>
           </div>
 
           <HeroImage />
