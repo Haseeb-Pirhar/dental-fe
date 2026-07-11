@@ -108,8 +108,8 @@ function Button({
 const DEFAULT_LINKS: NavItem[] = [
   { label: "Home", href: "/", active: true },
   { label: "About", href: "/dashboard/about" },
-  { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
+  { label: "Services", href: "/dashboard/service-page" },
+  { label: "Contact", href: "/dashboard/contact" },
 ];
 
 export default function Navbar({
