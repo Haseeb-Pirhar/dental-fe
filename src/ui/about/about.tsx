@@ -6,6 +6,7 @@ import { Quote, CheckCircle2, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Navbar from "@/src/component/layout/navbar";
 import StandFor from "@/src/component/about/stand-for";
+import TeamSection from "@/src/component/about/team-section";
 
 /**
  * AboutSection — "About Dentrist"
@@ -186,6 +187,7 @@ export default function AboutSection() {
         </div>
       </section>
       <StandFor />
+      <TeamSection />
     </>
   );
 }
