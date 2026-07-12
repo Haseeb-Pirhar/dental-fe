@@ -261,8 +261,15 @@ export default function HomeHero() {
               Discover a dental experience that&apos;s friendly, stress-free,
               and focused entirely on you
             </p>
-            <Button variant="outline" onClick={handleWhatsAppClick}>
-              <FaWhatsapp size={18} className="mr-2" />
+            <Button
+              variant="solid"
+              onClick={handleWhatsAppClick}
+              className="mt-2 rounded-2xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#25D366]/20 transition hover:bg-[#1eb95b]"
+            >
+              <FaWhatsapp
+                size={18}
+                className="mr-2 rounded-full bg-white p-1 text-[#25D366]"
+              />
               Book via WhatsApp
             </Button>
           </div>
