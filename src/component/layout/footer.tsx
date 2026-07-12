@@ -136,19 +136,19 @@ export default function Footer() {
               <div className="flex items-center gap-2.5">
                 <MapPin size={16} style={{ color: TOKENS.teal }} />
                 <span className="text-sm" style={{ color: TOKENS.slate }}>
-                  123 Smile Street, San Francisco, CA
+                  Shop #12-C, Model Town, Lahore, 54700, Pakistan
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail size={16} style={{ color: TOKENS.teal }} />
                 <span className="text-sm" style={{ color: TOKENS.slate }}>
-                  info@dentristclinic.com
+                  contact@dentristclinic.com
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone size={16} style={{ color: TOKENS.teal }} />
                 <span className="text-sm" style={{ color: TOKENS.slate }}>
-                  (123) 456-7890
+                  +92 300 0933343
                 </span>
               </div>
             </div>
