@@ -20,7 +20,7 @@ const TOKENS = {
 const NAV_LINKS = [
   { label: "Home", href: "/dashboard" },
   { label: "About", href: "/dashboard/about" },
-  { label: "Services", href: "/dashboard/services" },
+  { label: "Services", href: "/dashboard/service-page" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/dashboard/contact" },
 ];
